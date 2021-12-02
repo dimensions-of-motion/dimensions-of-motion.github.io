@@ -1,0 +1,290 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>Dimensions of motion</title>
+<base href="images/">
+<style>
+body {
+  margin: 0 auto;
+  padding: 30px 20px 50px;
+  font-family: sans-serif;
+  background: #f4f4f4;
+  color: #222;
+  max-width: 800px;
+}
+p {
+  line-height: 150%;
+  max-width: 45em;
+}
+h1, h2 {
+  font-weight: 200;
+}
+h2 {
+  font-size: 22px;
+}
+h2 a {
+  color: #000;
+}
+
+h3 {
+  margin-top: 40px;
+}
+a {
+  text-decoration: none;
+  color: #22b;
+}
+a:hover {
+  text-decoration: underline;
+  color: #22b;
+}
+a:hover img {
+  opacity: .5;
+}
+.paper img { background: #888; }
+.video img {
+  border-radius: 6px;
+  background: #000;
+}
+h1 span { white-space: nowrap; }
+h2 span {
+  line-height: 2em;
+}
+em {
+  color: #333;
+  font-weight: bold;
+  font-style: normal;
+}
+.teaser {
+  max-width: 45em;
+  margin: 40px 0 60px 0;
+  white-space: nowrap;
+  position: relative;
+}
+.teaser .imgs .full {
+  width: 100%;
+}
+.teaser .imgs .center {
+  position: absolute;
+  width: 32%;
+  top: -3%;
+  left: 34%;
+}
+.teaser .labels span {
+  display: inline-block;
+  width: 33%;
+  text-align: center;
+  padding-top: 10px;
+}
+.bibtex {
+  white-space: pre;
+  font-family: monospace;
+  line-height: 150%;
+  background: #fff;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 4px;
+}
+.crow > * {
+  vertical-align: middle;
+  margin-right: 20px;
+}
+a.img {
+  display: inline-block;
+}
+.links {
+  display: inline-block;
+  line-height: 150%;
+  padding: 8px 0;
+}
+.links a {
+  padding: 0 3px;
+}
+.examples {
+  padding: 10px 0;
+}
+.row, .toprow { white-space: nowrap; }
+.row > img, .row > div {
+  height:200px; width:200px; overflow:hidden; display:inline-block; background:white;
+}
+.toprow div {
+  width: 200px; display:inline-block; vertical-align:top; text-align:center;
+}
+.toprow {
+  padding: 10px 0 10px 0;
+  font-weight: bold;
+}
+svg { position: absolute; height: 0; }
+.hover {
+  cursor: crosshair;
+}
+
+</style>
+<h1>Dimensions of motion:<br>Learning to predict a subspace of optical flow <span>from a single image</span></h1>
+<br>
+<h2>
+  Richard Strong Bowen<br>
+  <a href="https://research.google/people/RichardTucker/">Richard Tucker</a><br>
+  <a href="https://www.cs.cornell.edu/rdz/">Ramin Zabih</a><br>
+  <a href="https://research.google/people/105910/">Noah Snavely</a><br>
+  <span>Google Research</span>
+</h2>
+
+<div class=teaser>
+<div class=imgs><img class=full src="basis.png"></div>
+</div>
+
+<h3>Abstract</h3>
+<p>We introduce the problem of predicting, from a single video frame, a
+low-dimensional subspace of optical flow which includes the actual
+instantaneous optical flow. We show how several natural scene assumptions
+allow us to identify an appropriate flow subspace via a set of basis flow
+fields parameterized by disparity and a representation of object instances.
+The flow subspace, together with a novel loss function, can be used for
+the tasks of predicting monocular depth or predicting depth plus an object
+instance embedding. This provides a new approach to learning these tasks
+in an unsupervised fashion using monocular input video without requiring
+camera intrinsics or poses.
+</p>
+
+
+<h3>Paper</h3>
+<div class=crow>
+<a class=img href="javascript:;"><img src="paper.png" width=300 style="border: 1px solid transparent"></a>
+<div class=links>
+<em>Dimensions of Motion:<br>Learning to Predict a Subspace of Optical Flow<br>from a Single Image</em><br><br>
+Richard Strong Bowen, Richard Tucker,<br>
+Ramin Zabih, Noah Snavely<br><br>
+[<a href="javascript:;">Arxiv coming soon</a>]
+</div>
+</div>
+
+<h3>Embedding examples</h3>
+<p>Each row of the following table shows an input image and the predicted output
+(disparity and embedding) from our network. The rightmost column is updated live and
+shows the similarity (in embedding space) to the point under the cursor. Mouse over the
+input images to explore the object embedding. (See Figure 5 and Section 4.3 in the paper.)
+<p>
+[Requires JavaScript and SVG filter support. Tested in Chrome 96, Firefox 94 (works best in Chrome).]
+<svg width=0 xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="ambient0" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feImage href="embed1-00.png" width="200000" height="200000" class="slide0" result="embed1"/>
+      <feImage href="embed1-00.png" width=200 height=200 />
+      <feComposite in2="embed1" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot1"/>
+      <feImage href="embed2-00.png" width="200000" height="200000" class="slide0" result="embed2"/>
+      <feImage href="embed2-00.png" width=200 height=200 />
+      <feComposite in2="embed2" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot2"/>
+      <feComposite in="dot1" in2="dot2" operator="arithmetic" k1="0" k2="1" k3="1" k4="-0.5"/>
+      <feColorMatrix type="matrix" values="3 3 3 0 -4.8  0 0 0 0 0  0 0 0 0 0  0 0 0 0 1"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  .98 0 0 0 0  .9 0 0 0 0  0 0 0 0 1"/>
+    </filter>
+  </defs>
+</svg>
+<svg width=0 xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="ambient1" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feImage href="embed1-01.png" width="200000" height="200000" class="slide1" result="embed1"/>
+      <feImage href="embed1-01.png" width=200 height=200 />
+      <feComposite in2="embed1" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot1"/>
+      <feImage href="embed2-01.png" width="200000" height="200000" class="slide1" result="embed2"/>
+      <feImage href="embed2-01.png" width=200 height=200 />
+      <feComposite in2="embed2" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot2"/>
+      <feComposite in="dot1" in2="dot2" operator="arithmetic" k1="0" k2="1" k3="1" k4="-0.5"/>
+      <feColorMatrix type="matrix" values="3 3 3 0 -4.8  0 0 0 0 0  0 0 0 0 0  0 0 0 0 1"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  .98 0 0 0 0  .9 0 0 0 0  0 0 0 0 1"/>
+    </filter>
+  </defs>
+</svg>
+<svg width=0 xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="ambient2" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feImage href="embed1-02.png" width="200000" height="200000" class="slide2" result="embed1"/>
+      <feImage href="embed1-02.png" width=200 height=200 />
+      <feComposite in2="embed1" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot1"/>
+      <feImage href="embed2-02.png" width="200000" height="200000" class="slide2" result="embed2"/>
+      <feImage href="embed2-02.png" width=200 height=200 />
+      <feComposite in2="embed2" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot2"/>
+      <feComposite in="dot1" in2="dot2" operator="arithmetic" k1="0" k2="1" k3="1" k4="-0.5"/>
+      <feColorMatrix type="matrix" values="3 3 3 0 -4.8  0 0 0 0 0  0 0 0 0 0  0 0 0 0 1"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  .98 0 0 0 0  .9 0 0 0 0  0 0 0 0 1"/>
+    </filter>
+  </defs>
+</svg>
+<svg width=0 xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="ambient3" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feImage href="embed1-03.png" width="200000" height="200000" class="slide3" result="embed1"/>
+      <feImage href="embed1-03.png" width=200 height=200 />
+      <feComposite in2="embed1" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot1"/>
+      <feImage href="embed2-03.png" width="200000" height="200000" class="slide3" result="embed2"/>
+      <feImage href="embed2-03.png" width=200 height=200 />
+      <feComposite in2="embed2" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot2"/>
+      <feComposite in="dot1" in2="dot2" operator="arithmetic" k1="0" k2="1" k3="1" k4="-0.5"/>
+      <feColorMatrix type="matrix" values="3 3 3 0 -4.8  0 0 0 0 0  0 0 0 0 0  0 0 0 0 1"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  .98 0 0 0 0  .9 0 0 0 0  0 0 0 0 1"/>
+    </filter>
+  </defs>
+</svg>
+<div class=examples>
+<div class=toprow>
+  <div>Input</div>
+  <div>Disparity</div>
+  <div>Embedding PCA<br>(first 3 dimensions)</div>
+  <div>Similarity to point<br>under cursor</div>
+</div>
+<div class=row data-slide=slide0>
+  <img src="source-00.png" height=200 class=hover>
+  <img src="disparity-00.png" height=200 class=hover>
+  <img src="ambient1-00.png" height=200 class=hover>
+  <div style="filter:url(#ambient0)" class="hover"></div>
+</div>
+<div class=row data-slide=slide1>
+  <img src="source-01.png" height=200 class=hover>
+  <img src="disparity-01.png" height=200 class=hover>
+  <img src="ambient1-01.png" height=200 class=hover>
+  <div style="filter:url(#ambient1)" class="hover"></div>
+</div>
+<div class=row data-slide=slide2>
+  <img src="source-02.png" height=200 class=hover>
+  <img src="disparity-02.png" height=200 class=hover>
+  <img src="ambient1-02.png" height=200 class=hover>
+  <div style="filter:url(#ambient2)" class="hover"></div>
+</div>
+<div class=row data-slide=slide3>
+  <img src="source-03.png" height=200 class=hover>
+  <img src="disparity-03.png" height=200 class=hover>
+  <img src="ambient1-03.png" height=200 class=hover>
+  <div style="filter:url(#ambient3)" class="hover"></div>
+</div>
+</div>
+
+<script>
+function setPosition(elements, x, y) {
+  for (const e of elements) {
+    e.setAttribute('x', -x * 999);
+    e.setAttribute('y', -y * 999);
+  }
+}
+
+function addHandlers() {
+  const hover = document.querySelectorAll('.hover');
+  for (const h of hover) {
+    const slide = document.querySelectorAll(`.${h.parentElement.dataset.slide}`);
+    h.addEventListener('mousemove', (e) => {
+      const x = e.offsetX;
+      const y = e.offsetY;
+      setPosition(slide, x, y);
+    });
+  }
+}
+addHandlers();
+window.addEventListener('load', (e) => {
+  setPosition(document.querySelectorAll('.slide0, .slide1, .slide2, .slide3'), 0, 0);
+});
+</script>
+
+(Images used under Creative Commons license from YouTube user POPtravel.)
+
+<h3>BibTeX</h3>
+<div class=bibtex>[Coming soon]
+</div>
+
