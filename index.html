@@ -75,13 +75,17 @@ em {
   padding-top: 10px;
 }
 .bibtex {
-  white-space: pre;
   font-family: monospace;
   line-height: 150%;
   background: #fff;
   padding: 10px;
   display: inline-block;
   border-radius: 4px;
+}
+.bibtex div {
+  white-space: pre-wrap;
+  padding-left: 11em;
+  text-indent: -11em;  
 }
 .crow > * {
   vertical-align: middle;
@@ -148,12 +152,12 @@ camera intrinsics or poses.
 
 <h3>Paper</h3>
 <div class=crow>
-<a class=img href="javascript:;"><img src="paper.png" width=300 style="border: 1px solid transparent"></a>
+<a class=img href="https://arxiv.org/abs/2112.01502"><img src="paper.png" width=300 style="border: 1px solid transparent"></a>
 <div class=links>
 <em>Dimensions of Motion:<br>Learning to Predict a Subspace of Optical Flow<br>from a Single Image</em><br><br>
 Richard Strong Bowen, Richard Tucker,<br>
 Ramin Zabih, Noah Snavely<br><br>
-[<a href="javascript:;">Arxiv coming soon</a>]
+[<a href="https://arxiv.org/abs/2112.01502">Arxiv</a>]
 </div>
 </div>
 
@@ -285,5 +289,13 @@ window.addEventListener('load', (e) => {
 (Images used under Creative Commons license from YouTube user POPtravel.)
 
 <h3>BibTeX</h3>
-<div class=bibtex>[Coming soon]
+<div class=bibtex>
+<div>@misc{bowen2021dimensions,</div>
+<div>  title         = {Dimensions of Motion: Learning to Predict a Subspace of Optical Flow from a Single Image},</div>
+<div>  author        = {Richard Strong Bowen and Richard Tucker and Ramin Zabih and Noah Snavely}, </div>
+<div>  year          = {2021},</div>
+<div>  eprint        = {2112.01502},</div>
+<div>  archivePrefix = {arXiv},</div>
+<div>  primaryClass  = {cs.CV}</div>
+<div>}</div>
 </div>
