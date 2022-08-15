@@ -98,7 +98,7 @@ a.img {
   line-height: 150%;
   padding: 8px 0;
 }
-.links a {
+.links a.pad {
   padding: 0 3px;
 }
 .examples {
@@ -121,7 +121,7 @@ svg { position: absolute; height: 0; }
 }
 
 </style>
-<h1>Dimensions of motion:<br>Learning to predict a subspace of optical flow <span>from a single image</span></h1>
+<h1>Dimensions of motion:<br>Monocular prediction through <span>flow subspaces</span></h1>
 <br>
 <h2>
   Richard Strong Bowen<a href="#fn">*</a><br>
@@ -136,16 +136,17 @@ svg { position: absolute; height: 0; }
 </div>
 
 <h3>Abstract</h3>
-<p>We introduce the problem of predicting, from a single video frame, a
-low-dimensional subspace of optical flow which includes the actual
-instantaneous optical flow. We show how several natural scene assumptions
-allow us to identify an appropriate flow subspace via a set of basis flow
-fields parameterized by disparity and a representation of object instances.
-The flow subspace, together with a novel loss function, can be used for
-the tasks of predicting monocular depth or predicting depth plus an object
-instance embedding. This provides a new approach to learning these tasks
-in an unsupervised fashion using monocular input video without requiring
-camera intrinsics or poses.
+<p>We introduce a way to learn to estimate a scene representation from
+a single image by predicting a low-dimensional subspace of optical flow
+for each training example, which encompasses the variety of possible
+camera and object movement. Supervision is provided by a novel loss which
+measures the distance between this predicted flow subspace and an observed
+optical flow. This provides a new approach to learning scene representation
+tasks, such as monocular depth prediction or instance segmentation, in an
+unsupervised fashion using in-the-wild input videos without requiring
+camera poses, intrinsics, or an explicit multi-view stereo step. We evaluate
+our method in multiple settings, including an indoor depth prediction task
+where it achieves comparable performance to recent methods trained with more supervision.
 </p>
 
 
@@ -153,10 +154,10 @@ camera intrinsics or poses.
 <div class=crow>
 <a class=img href="https://arxiv.org/abs/2112.01502"><img src="images/paper.png" width=300 style="border: 1px solid transparent"></a>
 <div class=links>
-<em>Dimensions of Motion:<br>Learning to Predict a Subspace of Optical Flow<br>from a Single Image</em><br><br>
+<em>Dimensions of Motion:<br>Monocular prediction through <span>flow subspaces</em><br><br>
 Richard Strong Bowen<a href="#fn">*</a>, Richard Tucker<a href="#fn">*</a>,<br>
 Ramin Zabih, Noah Snavely<br><br>
-[<a href="https://arxiv.org/abs/2112.01502">Arxiv</a>]
+[<a class=pad href="https://arxiv.org/abs/2112.01502">Arxiv</a>]
 </div>
 </div>
 
@@ -289,10 +290,10 @@ window.addEventListener('load', (e) => {
 
 <h3>BibTeX</h3>
 <div class=bibtex>
-<div>@misc{bowen2021dimensions,</div>
-<div>  title         = {Dimensions of Motion: Learning to Predict a Subspace of Optical Flow from a Single Image},</div>
+<div>@misc{bowen2022dimensions,</div>
+<div>  title         = {Dimensions of Motion: Monocular Prediction through Flow Subspaces},</div>
 <div>  author        = {Richard Strong Bowen and Richard Tucker and Ramin Zabih and Noah Snavely}, </div>
-<div>  year          = {2021},</div>
+<div>  year          = {2022},</div>
 <div>  eprint        = {2112.01502},</div>
 <div>  archivePrefix = {arXiv},</div>
 <div>  primaryClass  = {cs.CV}</div>
@@ -301,4 +302,4 @@ window.addEventListener('load', (e) => {
 
 <hr>
 
-<sup id='fn'> *: equal authorial contribution</sup>
+<sup id='fn'>*equal authorial contribution</sup>
