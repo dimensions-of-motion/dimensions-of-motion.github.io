@@ -45,7 +45,8 @@ a:hover img {
 }
 h1 span { white-space: nowrap; }
 h2 span {
-  line-height: 2em;
+  display: inline-block;
+  padding-top: 1em;
 }
 em {
   color: #333;
@@ -105,30 +106,30 @@ a.img {
   padding: 10px 0;
 }
 .row, .toprow { white-space: nowrap; }
-.row > img, .row > div {
-  height:200px; width:200px; overflow:hidden; display:inline-block; background:white;
+.row > img {
+  height:150px; width:150px; overflow:hidden; display:inline-block; background:white;
 }
 .toprow div {
-  width: 200px; display:inline-block; vertical-align:top; text-align:center;
+  width: 150px; display:inline-block; vertical-align:top; text-align:center;
 }
 .toprow {
   padding: 10px 0 10px 0;
   font-weight: bold;
 }
-svg { position: absolute; height: 0; }
-.hover {
-  cursor: crosshair;
+sup {
+  font-size: 60%;
+  line-height: 0;
+  vertical-align: .6em;
 }
-
 </style>
 <h1>Dimensions of motion:<br>Monocular prediction through <span>flow subspaces</span></h1>
 <br>
 <h2>
-  Richard Strong Bowen<a href="#fn">*</a><br>
-  <a href="https://research.google/people/RichardTucker/">Richard Tucker</a><a href="#fn">*</a><br>
-  <a href="https://www.cs.cornell.edu/rdz/">Ramin Zabih</a><br>
-  <a href="https://research.google/people/105910/">Noah Snavely</a><br>
-  <span>Google Research</span>
+  Richard Strong Bowen<a href="#fn">*</a><sup>12</sup><br>
+  <a href="https://research.google/people/RichardTucker/">Richard Tucker</a><a href="#fn">*</a><sup>1</sup><br>
+  <a href="https://www.cs.cornell.edu/rdz/">Ramin Zabih</a><sup>12</sup><br>
+  <a href="https://research.google/people/105910/">Noah Snavely</a><sup>12</sup><br>
+  <span><sup>1 </sup>Google Research</span> <span><sup>2 </sup>Cornell Tech</span>
 </h2>
 
 <div class=teaser>
@@ -162,130 +163,55 @@ Ramin Zabih, Noah Snavely<br><br>
 </div>
 
 <h3>Embedding examples</h3>
-<p>Each row of the following table shows an input image and the predicted output
-(disparity and embedding) from our network. The rightmost column is updated live and
-shows the similarity (in embedding space) to the point under the cursor. Mouse over the
-input images to explore the object embedding. (See Figure 5 and Section 4.3 in the paper.)
-<p>
-[Requires JavaScript and SVG filter support. Tested in Chrome 96, Firefox 94 (works best in Chrome).]
-<svg width=0 xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="ambient0" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feImage href="images/embed1-00.png" width="200000" height="200000" class="slide0" result="embed1"/>
-      <feImage href="images/embed1-00.png" width=200 height=200 />
-      <feComposite in2="embed1" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot1"/>
-      <feImage href="images/embed2-00.png" width="200000" height="200000" class="slide0" result="embed2"/>
-      <feImage href="images/embed2-00.png" width=200 height=200 />
-      <feComposite in2="embed2" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot2"/>
-      <feComposite in="dot1" in2="dot2" operator="arithmetic" k1="0" k2="1" k3="1" k4="-0.5"/>
-      <feColorMatrix type="matrix" values="3 3 3 0 -4.8  0 0 0 0 0  0 0 0 0 0  0 0 0 0 1"/>
-      <feColorMatrix type="matrix" values="1 0 0 0 0  .98 0 0 0 0  .9 0 0 0 0  0 0 0 0 1"/>
-    </filter>
-  </defs>
-</svg>
-<svg width=0 xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="ambient1" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feImage href="images/embed1-01.png" width="200000" height="200000" class="slide1" result="embed1"/>
-      <feImage href="images/embed1-01.png" width=200 height=200 />
-      <feComposite in2="embed1" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot1"/>
-      <feImage href="images/embed2-01.png" width="200000" height="200000" class="slide1" result="embed2"/>
-      <feImage href="images/embed2-01.png" width=200 height=200 />
-      <feComposite in2="embed2" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot2"/>
-      <feComposite in="dot1" in2="dot2" operator="arithmetic" k1="0" k2="1" k3="1" k4="-0.5"/>
-      <feColorMatrix type="matrix" values="3 3 3 0 -4.8  0 0 0 0 0  0 0 0 0 0  0 0 0 0 1"/>
-      <feColorMatrix type="matrix" values="1 0 0 0 0  .98 0 0 0 0  .9 0 0 0 0  0 0 0 0 1"/>
-    </filter>
-  </defs>
-</svg>
-<svg width=0 xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="ambient2" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feImage href="images/embed1-02.png" width="200000" height="200000" class="slide2" result="embed1"/>
-      <feImage href="images/embed1-02.png" width=200 height=200 />
-      <feComposite in2="embed1" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot1"/>
-      <feImage href="images/embed2-02.png" width="200000" height="200000" class="slide2" result="embed2"/>
-      <feImage href="images/embed2-02.png" width=200 height=200 />
-      <feComposite in2="embed2" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot2"/>
-      <feComposite in="dot1" in2="dot2" operator="arithmetic" k1="0" k2="1" k3="1" k4="-0.5"/>
-      <feColorMatrix type="matrix" values="3 3 3 0 -4.8  0 0 0 0 0  0 0 0 0 0  0 0 0 0 1"/>
-      <feColorMatrix type="matrix" values="1 0 0 0 0  .98 0 0 0 0  .9 0 0 0 0  0 0 0 0 1"/>
-    </filter>
-  </defs>
-</svg>
-<svg width=0 xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="ambient3" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feImage href="images/embed1-03.png" width="200000" height="200000" class="slide3" result="embed1"/>
-      <feImage href="images/embed1-03.png" width=200 height=200 />
-      <feComposite in2="embed1" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot1"/>
-      <feImage href="images/embed2-03.png" width="200000" height="200000" class="slide3" result="embed2"/>
-      <feImage href="images/embed2-03.png" width=200 height=200 />
-      <feComposite in2="embed2" operator="arithmetic" k1="2.0" k2="-1.0" k3="-1.0" k4="1.0" result="dot2"/>
-      <feComposite in="dot1" in2="dot2" operator="arithmetic" k1="0" k2="1" k3="1" k4="-0.5"/>
-      <feColorMatrix type="matrix" values="3 3 3 0 -4.8  0 0 0 0 0  0 0 0 0 0  0 0 0 0 1"/>
-      <feColorMatrix type="matrix" values="1 0 0 0 0  .98 0 0 0 0  .9 0 0 0 0  0 0 0 0 1"/>
-    </filter>
-  </defs>
-</svg>
+<p>Each row of the following table shows an input image (overlaid with a few manually
+chosen seed points) and the predicted outputs (disparity and embedding) from our network.
+The rightmost column then shows the segmentation induced by coloring each pixel according
+to which of the seed points is closest to it in bilateral embedding space.
+(See Figures 5–6 and Section 4.2 in the paper.)</p>
 <div class=examples>
 <div class=toprow>
-  <div>Input</div>
-  <div>Disparity</div>
-  <div>Embedding PCA<br>(first 3 dimensions)</div>
-  <div>Similarity to point<br>under cursor</div>
+  <div>Input<br>and seed points</div>
+  <div><br>Disparity</div>
+  <div>Embedding PCA<br>(dimensions 0–2)</div>
+  <div>Embedding PCA<br>(dimensions 3–5)</div>
+  <div>Induced<br>segmentation</div>
 </div>
-<div class=row data-slide=slide0>
-  <img src="images/source-00.png" height=200 class=hover>
-  <img src="images/disparity-00.png" height=200 class=hover>
-  <img src="images/ambient1-00.png" height=200 class=hover>
-  <div style="filter:url(#ambient0)" class="hover"></div>
+<div class=row>
+  <img src="images/input-00.png">
+  <img src="images/disparity-00.png">
+  <img src="images/pca1-00.png">
+  <img src="images/pca2-00.png">
+  <img src="images/output-00.png">
 </div>
-<div class=row data-slide=slide1>
-  <img src="images/source-01.png" height=200 class=hover>
-  <img src="images/disparity-01.png" height=200 class=hover>
-  <img src="images/ambient1-01.png" height=200 class=hover>
-  <div style="filter:url(#ambient1)" class="hover"></div>
+<div class=row>
+  <img src="images/input-01.png">
+  <img src="images/disparity-01.png">
+  <img src="images/pca1-01.png">
+  <img src="images/pca2-01.png">
+  <img src="images/output-01.png">
 </div>
-<div class=row data-slide=slide2>
-  <img src="images/source-02.png" height=200 class=hover>
-  <img src="images/disparity-02.png" height=200 class=hover>
-  <img src="images/ambient1-02.png" height=200 class=hover>
-  <div style="filter:url(#ambient2)" class="hover"></div>
+<div class=row>
+  <img src="images/input-02.png">
+  <img src="images/disparity-02.png">
+  <img src="images/pca1-02.png">
+  <img src="images/pca2-02.png">
+  <img src="images/output-02.png">
 </div>
-<div class=row data-slide=slide3>
-  <img src="images/source-03.png" height=200 class=hover>
-  <img src="images/disparity-03.png" height=200 class=hover>
-  <img src="images/ambient1-03.png" height=200 class=hover>
-  <div style="filter:url(#ambient3)" class="hover"></div>
+<div class=row>
+  <img src="images/input-03.png">
+  <img src="images/disparity-03.png">
+  <img src="images/pca1-03.png">
+  <img src="images/pca2-03.png">
+  <img src="images/output-03.png">
+</div>
+<div class=row>
+  <img src="images/input-04.png">
+  <img src="images/disparity-04.png">
+  <img src="images/pca1-04.png">
+  <img src="images/pca2-04.png">
+  <img src="images/output-04.png">
 </div>
 </div>
-
-<script>
-function setPosition(elements, x, y) {
-  for (const e of elements) {
-    e.setAttribute('x', -x * 999);
-    e.setAttribute('y', -y * 999);
-  }
-}
-
-function addHandlers() {
-  const hover = document.querySelectorAll('.hover');
-  for (const h of hover) {
-    const slide = document.querySelectorAll(`.${h.parentElement.dataset.slide}`);
-    h.addEventListener('mousemove', (e) => {
-      const x = e.offsetX;
-      const y = e.offsetY;
-      setPosition(slide, x, y);
-    });
-  }
-}
-addHandlers();
-window.addEventListener('load', (e) => {
-  setPosition(document.querySelectorAll('.slide0, .slide1, .slide2, .slide3'), 0, 0);
-});
-</script>
-
 (Images used under Creative Commons license from YouTube user POPtravel.)
 
 <h3>BibTeX</h3>
