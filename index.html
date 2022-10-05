@@ -43,7 +43,14 @@ a:hover img {
   border-radius: 6px;
   background: #000;
 }
+h1 { margin-bottom: 1em;}
 h1 span { white-space: nowrap; }
+h1 span.conference::before { content: "("; vertical-align:.02em; }
+h1 span.conference::after { content: ")"; vertical-align:.02em; }
+h1 span.conference {
+  font-size: 85%;
+  line-height: 2em;
+}
 h2 span {
   display: inline-block;
   padding-top: 1em;
@@ -122,8 +129,8 @@ sup {
   vertical-align: .6em;
 }
 </style>
-<h1>Dimensions of motion:<br>Monocular prediction through <span>flow subspaces</span></h1>
-<br>
+<h1>Dimensions of motion:<br>Monocular prediction through <span>flow subspaces</span>
+<br><span class=conference>3DV 2022 Oral</span></h1>
 <h2>
   Richard Strong Bowen<a href="#fn">*</a><sup>12</sup><br>
   <a href="https://research.google/people/RichardTucker/">Richard Tucker</a><a href="#fn">*</a><sup>1</sup><br>
@@ -162,6 +169,14 @@ Ramin Zabih, Noah Snavely<br><br>
 </div>
 </div>
 
+<h3>Video</h3>
+<div class=crow>
+<a class=img href="https://youtu.be/uashUrAeQdw"><img src="images/vid.png" style="border-radius: 6px; border: 1px solid #444;" width=450></a>
+<div class=links>
+[<a href="https://youtu.be/uashUrAeQdw">YouTube</a>]
+</div>
+</div>
+  
 <h3>Embedding examples</h3>
 <p>Each row of the following table shows an input image (overlaid with a few manually
 chosen seed points) and the predicted outputs (disparity and embedding) from our network.
@@ -216,13 +231,11 @@ to which of the seed points is closest to it in bilateral embedding space.
 
 <h3>BibTeX</h3>
 <div class=bibtex>
-<div>@misc{bowen2022dimensions,</div>
-<div>  title         = {Dimensions of Motion: Monocular Prediction through Flow Subspaces},</div>
-<div>  author        = {Richard Strong Bowen and Richard Tucker and Ramin Zabih and Noah Snavely}, </div>
-<div>  year          = {2022},</div>
-<div>  eprint        = {2112.01502},</div>
-<div>  archivePrefix = {arXiv},</div>
-<div>  primaryClass  = {cs.CV}</div>
+<div>@inproceedings{bowen2022dimensions,</div>
+<div>  title     = {Dimensions of Motion: Monocular Prediction through Flow Subspaces},</div>
+<div>  author    = {Richard Strong Bowen and Richard Tucker and Ramin Zabih and Noah Snavely}, </div>
+<div>  booktitle = {Proceedings of the International Conference on {3D} Vision (3DV)}, </div>
+<div>  year      = {2022}</div>
 <div>}</div>
 </div>
 
